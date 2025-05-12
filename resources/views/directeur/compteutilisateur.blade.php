@@ -48,9 +48,12 @@
                                     value="john.doe@example.com" placeholder="john.doe@example.com" />
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="organization" class="form-label">Organization</label>
-                                <input type="text" class="form-control" id="organization" name="organization"
-                                    value="ThemeSelection" />
+                                <label for="organization" class="form-label">Role</label>
+                                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                                    <option selected> Selectionnner le role de l'utilisateur </option>
+                                    <option value="1">Client</option>
+                                    <option value="2">Agent</option>
+                                    <option value="3">Directeur</option>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="phoneNumber">Numero de telephone</label>
