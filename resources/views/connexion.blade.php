@@ -91,36 +91,24 @@
 
                         <form  class="mb-3" action="{{route('authentification')}}" method="post">
                             @csrf
-                            @if (session('error'))
+                            @if (session('success'))
                                 <div class="alert alert-danger">
-                                    {{ session('error') }}
+                                    {{ session('success') }}
                                 </div>
                             @endif
                             <div class="mb-3">
                                 <label  class="form-label">Email or Username</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    name="email"
-                                    placeholder="Enter your email or username"
-                                    autofocus />
+                                <input type="email"class="form-control" name="email"placeholder="Enter your email or username"autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" >Password</label>
                                 </div>
                                 <div class="input-group input-group-merge">
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        name="password"
-                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="password" />
+                                    <input type="password"class="form-control"name="password"placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
-
-
                             <button class="btn btn-primary d-grid w-100" type="submit">Se Connecter</button>
 
                         </form>

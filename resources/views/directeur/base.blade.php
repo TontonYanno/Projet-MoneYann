@@ -127,12 +127,14 @@
                             <div data-i18n="Account Settings">Profile</div>
                         </a>
                     </li>
+                    <form action="{{route('deconnexion')}}" method="post">
+                        @csrf
 
-                    <li class="menu-item">
-                        <a href="{{ route('deconnexion') }}" class="menu-link ">
-                            <i class='bx bx-log-out bx-tada'></i>
-                            <div data-i18n="Account Settings">Deconnexion</div>
-                        </a>
+                        <li class="menu-item">
+                            <button  class="btn" type="submit">
+                                <div data-i18n="Account Settings"> <i class='bx bx-log-out bx-tada'></i> Deconnexion</div>
+                            </button>
+                        </form>
                     </li>
 
                     <!-- Misc -->

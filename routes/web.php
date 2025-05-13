@@ -4,6 +4,7 @@ use App\Http\Controllers\CompteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller ;
 use App\Http\Controllers\UserController;
+use Illuminate\Auth\Middleware\Authenticate;
 
 Route::get('/clientdashboard', function () {
     return view('client.base');
@@ -17,9 +18,6 @@ Route::get('/compte', function () {
     return view('client.compte');
 })->name('compte');
 
-Route::get('/deconnexion', function () {
-    return view('connexion');
-})->name('deconnexion');
 
 Route::get('/transfert', function () {
     return view('client.transfert');
@@ -56,35 +54,21 @@ Route::get("/compteagent",function(){
 })->name('compteagent');
 
 // ------------------------------------------------------------
-Route::get("/directeurdashboard",function(){
-    return view('directeur.dashboard');
-})->name('directeurdashboard');
 
-Route::get("/comptedirecteur", function(){
-    return view('directeur.compte');
-})->name('comptedirecteur');
 
-Route::get("/compteutilisateur", function(){
-    return view('directeur.compteutilisateur');
-})->name('compteutilisateur');
-
-Route::get("/depotdirecteur",function(){
-    return view("directeur.depotdirecteur");
-})->name('depotdirecteur');
-
-Route::get("/retraitdirecteur",function(){
-    return view("directeur.retraitdirecteur");
-})->name('retraitdirecteur');
-
-Route::get("/transfertdirecteur",function(){
-    return view("directeur.transfertdirecteur");
-})->name('transfertdirecteur');
-
-Route::get('/profiledirect', function(){
-    return view('directeur.profiledirecteur');
-})->name('profiledirecteur');
+Route::middleware(['auth', 'auth.session'])->group(function () {
+    Route::get("/directeurdashboard" ,[UserController::class, 'directeurdashboard'] )->name('directeurdashboard')->middleware('auth');
+    Route::get("/comptedirecteur", [UserController::class, 'comptedirecteur'])->name('comptedirecteur');
+    Route::get("/compteutilisateur", [UserController::class,'compteutilisateur'])->name('compteutilisateur');
+    Route::get("/depotdirecteur",[UserController::class, 'depotdirecteur'])->name('depotdirecteur');
+    Route::get("/retraitdirecteur",[UserController::class,'retraitdirecteur'])->name('retraitdirecteur');
+    Route::get("/transfertdirecteur",[UserController::class,'transfertdirecteur'])->name('transfertdirecteur');
+    Route::get('/profiledirect',[UserController::class,'profiledirecteur'])->name('profiledirecteur');
+});
 
 
 Route::get('/test',[CompteController::class,'test']);
 Route::get('/',[UserController::class,'connexion'])->name('connexion');
+
+Route::post('/deconnexion',[UserController::class,'deconnexion'])->name('deconnexion');
 Route::post('/authentification',[UserController::class,'authentification'])->name('authentification');

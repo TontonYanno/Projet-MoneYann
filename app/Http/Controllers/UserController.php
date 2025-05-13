@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     // --------------------------------------------------------------------
+
     // Functions pour les authentifications
     function creer(Request $request){
         // Validate the request data
@@ -64,5 +65,37 @@ class UserController extends Controller
             // Authentication failed, redirect back with an error message
             return back()->withErrors(['email' => 'The provided credentials do not match our records.',])->onlyInput('email');
         }
+    }
+
+    function deconnexion(Request $request):RedirectResponse{
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('success', 'Déconnecté avec succès.');
+    }
+    // Profiles drecteur
+
+    function directeurdashboard (){
+        return view('directeur.dashboard');
+    }
+    function comptedirecteur() {
+        return view('directeur.compte');
+    }
+
+    function compteutilisateur(){
+        return view('directeur.compteutilisateur');
+    }
+
+    function depotdirecteur(){
+        return view('directeur.depotdirecteur');
+    }
+    function retraitdirecteur(){
+        return view('directeur.retraitdirecteur');
+    }
+    function transfertdirecteur(){
+        return view('directeur.transfertdirecteur');
+    }
+    function profiledirecteur(){
+        return view('directeur.profile');
     }
 }
