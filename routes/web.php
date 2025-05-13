@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\CompteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller ;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
+Route::get('/clientdashboard', function () {
     return view('client.base');
-});
+})->name('clientdashboard');
 
 Route::get('/profile', function () {
     return view('client.profile');
@@ -30,7 +33,7 @@ Route::get('/transaction', function () {
 
 Route::get('/agentdashboard', function () {
     return view('agent.dashboard');
-})->name('agent');
+})->name('agentdashboard');
 
 Route::get('/depotagent', function () {
     return view('agent.depotagent');
@@ -55,7 +58,7 @@ Route::get("/compteagent",function(){
 // ------------------------------------------------------------
 Route::get("/directeurdashboard",function(){
     return view('directeur.dashboard');
-});
+})->name('directeurdashboard');
 
 Route::get("/comptedirecteur", function(){
     return view('directeur.compte');
@@ -81,3 +84,7 @@ Route::get('/profiledirect', function(){
     return view('directeur.profiledirecteur');
 })->name('profiledirecteur');
 
+
+Route::get('/test',[CompteController::class,'test']);
+Route::get('/',[UserController::class,'connexion'])->name('connexion');
+Route::post('/authentification',[UserController::class,'authentification'])->name('authentification');
