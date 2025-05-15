@@ -7,8 +7,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
@@ -40,7 +39,7 @@ class UserController extends Controller
         $user->adresse = $validatedData['adresse'];
         $user->date_naissance = $validatedData['date_naissance'];
         $user->ville_naissance = $validatedData['ville_naissance'];
-        $user->photo ='assets/img/avatars/1.png' ; // Store the photo if provided
+        $user->photo ='public\storage\1.png' ; // Store the photo if provided
         $passxord="azertyui";
         $user->password = Hash::make($passxord); // Hash the password
         // Save the user to the database
@@ -51,10 +50,13 @@ class UserController extends Controller
         // Redirect or return a response
         return redirect()->route('compteutilisateur')->with('success', 'Utilisateur créé avec succès.');
     }
-
     function listeutilisateur(){
         $users = User::all();
         return view('directeur.listeutilisateur', compact('users'));
+    }
+    function infoutilisateur($id){
+        $user = User::findOrFail($id);
+        return view('directeur.infoutilisateur', compact('user'));
     }
 
     function connexion(){

@@ -60,12 +60,14 @@ Route::get("/compteagent",function(){
 Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::get("/directeurdashboard" ,[UserController::class, 'directeurdashboard'] )->name('directeurdashboard')->middleware('auth');
     Route::get("/comptedirecteur", [UserController::class, 'comptedirecteur'])->name('comptedirecteur');
-    Route::get("/compteutilisateur", [UserController::class,'compteutilisateur'])->name('compteutilisateur');
+    Route::get("/compteutilisateur", [UserController::class,'compteutilisateur'
+    ])->name('compteutilisateur');
     Route::get("/depotdirecteur",[UserController::class, 'depotdirecteur'])->name('depotdirecteur');
     Route::get("/retraitdirecteur",[UserController::class,'retraitdirecteur'])->name('retraitdirecteur');
     Route::get("/transfertdirecteur",[UserController::class,'transfertdirecteur'])->name('transfertdirecteur');
     Route::get('/profiledirect',[UserController::class,'profiledirecteur'])->name('profiledirecteur');
     Route::get('/listeutilisateur',[UserController::class,'listeutilisateur'])->name('listeutilisateur');
+    Route::get('/infoutilisateur/{id}',[UserController::class,'infoutilisateur'])->name('infoutilisateur');
 });
 
 Route::post('creerutilisateur',[UserController::class,'creerutilisateur'])->name('creerutilisateur');

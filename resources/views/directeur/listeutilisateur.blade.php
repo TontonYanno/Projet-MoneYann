@@ -28,15 +28,16 @@
                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong> {{$user['nom']}} </strong></td>
                            <td>
                           <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                              <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xxl pull-up" >
-                              <img src="{{$user['photo']}}" alt="Avatar" class="rounded-circle" />
+
+                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xxl pull-up">
+                                <img src="{{$user['photo']}}" alt="Avatar" class="rounded-circle" />
                             </li>
-                        </ul>
-                    </td>
+                          </ul>
+                        </td>
                     <td><span class="">{{$user['role']}}</span></td>
                     <td>
                         <div class="">
-                            <a class="btn btn-info" href="#"><i class='bx bx-info-circle bx-tada' style='color:#f1f1f1'></i> </a>
+                            <a class="btn btn-info" href="{{route('infoutilisateur',['id'=>$user->id])}}"><i class='bx bx-info-circle bx-tada' style='color:#f1f1f1'></i> </a>
                             <a class="btn btn-success" href="#"><i class='bx bx-edit-alt bx-tada' style='color:#f1f1f1' ></i> </a>
                             <a class="btn btn-danger" href="#"><i class='bx bx-trash bx-tada' style='color:#f1f1f1' ></i> </a>
                         </div>

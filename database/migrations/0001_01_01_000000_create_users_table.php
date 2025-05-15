@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('adresse');
             $table->date('date_naissance');
             $table->string('ville_naissance');
+            // Champ pour stocker le chemin de la photo (ex: 'photos/users/nomfichier.jpg')
             $table->string('photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
