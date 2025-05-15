@@ -15,36 +15,51 @@ class UserController extends Controller
     // --------------------------------------------------------------------
 
     // Functions pour les authentifications
-    function creer(Request $request){
+    function creerutilisateur(Request $request){
         // Validate the request data
         $validatedData = $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'role' => 'required|string',
-            'telephone' => 'required|string|max:15',
-            'adresse' => 'required|string|max:255',
-            'date_naissance' => 'required|date',
-            'ville_naissance' => 'required|string|max:255',
-            'photo' => 'public\assets\img\avatars\1.png',
-            'password' => 'required|string|min:8|confirmed',
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'in:client,agent,directeur'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'telephone' => ['required', 'string', 'max:15'],
+            'adresse' => ['required', 'string', 'max:255'],
+            'date_naissance' => ['required', 'date'],
+            'ville_naissance' => ['required', 'string', 'max:255'],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
+            // Password validation
+            // 'password' => ['required', 'string', 'min:8'], // Minimum 8 characters
         ]);
         // Create a new user instance
-        $user = new User($validatedData);
-
-        // Hash the password
-        $user->password = bcrypt($validatedData['password']);
-
+        $user = new User();
+        $user->nom = $validatedData['nom'];
+        $user->prenom = $validatedData['prenom'];
+        $user->role = $validatedData['role'];
+        $user->email = $validatedData['email'];
+        $user->telephone = $validatedData['telephone'];
+        $user->adresse = $validatedData['adresse'];
+        $user->date_naissance = $validatedData['date_naissance'];
+        $user->ville_naissance = $validatedData['ville_naissance'];
+        $user->photo ='assets/img/avatars/1.png' ; // Store the photo if provided
+        $passxord="azertyui";
+        $user->password = Hash::make($passxord); // Hash the password
         // Save the user to the database
         $user->save();
+
+        // Optionally, you can use the create method directly
+
         // Redirect or return a response
-        return redirect()->route('profile')->with('success', 'User registered successfully.');
+        return redirect()->route('compteutilisateur')->with('success', 'Utilisateur créé avec succès.');
+    }
+
+    function listeutilisateur(){
+        $users = User::all();
+        return view('directeur.listeutilisateur', compact('users'));
     }
 
     function connexion(){
         return view('connexion');
     }
-
     function authentification(Request $request):RedirectResponse{
 
         // Validate the request data
@@ -96,6 +111,6 @@ class UserController extends Controller
         return view('directeur.transfertdirecteur');
     }
     function profiledirecteur(){
-        return view('directeur.profile');
+        return view('directeur.profiledirecteur');
     }
 }

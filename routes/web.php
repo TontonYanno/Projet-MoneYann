@@ -4,6 +4,7 @@ use App\Http\Controllers\CompteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller ;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Auth\Middleware\Authenticate;
 
 Route::get('/clientdashboard', function () {
@@ -64,10 +65,12 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
     Route::get("/retraitdirecteur",[UserController::class,'retraitdirecteur'])->name('retraitdirecteur');
     Route::get("/transfertdirecteur",[UserController::class,'transfertdirecteur'])->name('transfertdirecteur');
     Route::get('/profiledirect',[UserController::class,'profiledirecteur'])->name('profiledirecteur');
+    Route::get('/listeutilisateur',[UserController::class,'listeutilisateur'])->name('listeutilisateur');
 });
 
+Route::post('creerutilisateur',[UserController::class,'creerutilisateur'])->name('creerutilisateur');
 
-Route::get('/test',[CompteController::class,'test']);
+Route::get('/test',[CompteController::class,'test'])->name('test');
 Route::get('/',[UserController::class,'connexion'])->name('connexion');
 
 Route::post('/deconnexion',[UserController::class,'deconnexion'])->name('deconnexion');

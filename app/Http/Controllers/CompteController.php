@@ -17,14 +17,15 @@ class CompteController extends Controller
         $user = User::create([
             'nom' => 'OUSSOU',
             'prenom' => 'Yann',
+            'role' => 'directeur',
             'email' => 'test1@gmail.com',
             'telephone' => '1237890',
-            'adresse' => '123 Main St',
+            'adresse' => 'Faya',
             'date_naissance' => '1990-01-01',
-            'ville_naissance' => 'Paris',
+            'ville_naissance' => 'Bouake',
             'photo' => 'public\assets\img\avatars\1.png',
             'password' => 'azertyui', // Plain text password
-            // 'password' => Hash::make('password'), // Hash the password
+            // ,la leçon que j'ai appris c'est que je ne dois pas hacher dans la création en dur avec Laravel 12
         ]);
 
         // Save the user to the database
