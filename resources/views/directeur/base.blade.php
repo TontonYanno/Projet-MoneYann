@@ -98,7 +98,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('compteutilisateur') }}" class="menu-link ">
-                            <i class='bx bxs-bank bx-tada'></i>
+                            <i class='bx bxs-user-account bx-tada' ></i>
                             <div data-i18n="Account Settings">Compte Utilisateur</div>
                         </a>
                     </li>

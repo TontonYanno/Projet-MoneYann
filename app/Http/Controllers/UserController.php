@@ -113,6 +113,8 @@ class UserController extends Controller
         return view('directeur.transfertdirecteur');
     }
     function profiledirecteur(){
-        return view('directeur.profiledirecteur');
+        $user = Auth::user();
+
+        return view('directeur.profiledirecteur', compact('user') );
     }
 }
